@@ -7,8 +7,6 @@ const profileData = {
     
     skills: [
         'HTML & CSS',
-        'JavaScript',
-        'React',
         'UI/UX Design',
         'Responsive Design',
         'Git & GitHub'
@@ -16,31 +14,25 @@ const profileData = {
     
     experience: [
         {
-            position: 'Senior Web Developer',
-            company: 'Tech Company GmbH',
-            period: '2020 - Heute',
-            description: 'Entwicklung und Wartung von Unternehmenswebsites und Web-Applikationen.'
-        },
-        {
-            position: 'Junior Developer',
-            company: 'StartUp AG',
-            period: '2018 - 2020',
-            description: 'Frontend-Entwicklung und Mitarbeit an innovativen Projekten.'
+            position: 'Developer',
+            company: 'Quantix Development',
+            period: '2025 - Heute',
+            description: 'Entwicklung und Wartung von Discord-Bots jeglicher Art.'
         }
     ],
     
     contact: [
         {
             label: 'E-Mail',
-            value: 'max.mustermann@email.com'
+            value: 'miyako@zilan.dev'
         },
         {
             label: 'Telefon',
-            value: '+41 12 345 67 89'
+            value: '+41 77 266 05 11'
         },
         {
             label: 'Standort',
-            value: 'Zürich, Schweiz'
+            value: 'Heiden, Schweiz'
         }
     ]
 };
