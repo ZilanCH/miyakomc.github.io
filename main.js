@@ -1,50 +1,52 @@
-// Erstelle animierte Partikel im Hintergrund
-function createParticles() {
-    const particlesContainer = document.getElementById('particles');
-    const particleCount = 20;
-
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        
-        const size = Math.random() * 4 + 2;
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 6 + 's';
-        particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-        
-        particlesContainer.appendChild(particle);
-    }
-}
-
-// Füge Hover-Effekte hinzu
-document.querySelectorAll('.link-item').forEach(item => {
-    item.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-3px) scale(1.02)';
+// Funktion zum Rendern der Profildaten
+function renderProfile() {
+    // Header
+    document.getElementById('profileImg').src = profileData.profileImage;
+    document.getElementById('profileName').textContent = profileData.name;
+    document.getElementById('profileSubtitle').textContent = profileData.subtitle;
+    
+    // Über mich
+    document.getElementById('aboutText').textContent = profileData.about;
+    
+    // Skills
+    const skillsContainer = document.getElementById('skillsContainer');
+    profileData.skills.forEach(skill => {
+        const skillDiv = document.createElement('div');
+        skillDiv.className = 'skill-item';
+        skillDiv.textContent = skill;
+        skillsContainer.appendChild(skillDiv);
     });
     
-    item.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
+    // Erfahrung
+    const experienceContainer = document.getElementById('experienceContainer');
+    profileData.experience.forEach((exp, index) => {
+        const expDiv = document.createElement('div');
+        expDiv.className = 'experience-item';
+        expDiv.innerHTML = `
+            <p class="about-text">
+                <strong>${exp.position}</strong> - ${exp.company} (${exp.period})<br>
+                ${exp.description}
+            </p>
+        `;
+        experienceContainer.appendChild(expDiv);
+        
+        if (index < profileData.experience.length - 1) {
+            experienceContainer.appendChild(document.createElement('br'));
+        }
     });
-});
-
-// Animiere Skill-Balken beim Laden der Seite
-function animateSkillBars() {
-    const skillBars = document.querySelectorAll('.skill-progress');
     
-    // Verwende einen einfacheren Ansatz für bessere Kompatibilität
-    setTimeout(() => {
-        skillBars.forEach(bar => {
-            const level = bar.getAttribute('data-level');
-            bar.style.width = level + '%';
-        });
-    }, 1000);
+    // Kontakt
+    const contactContainer = document.getElementById('contactContainer');
+    profileData.contact.forEach(contact => {
+        const contactDiv = document.createElement('div');
+        contactDiv.className = 'contact-item';
+        contactDiv.innerHTML = `
+            <strong>${contact.label}</strong>
+            ${contact.value}
+        `;
+        contactContainer.appendChild(contactDiv);
+    });
 }
 
-// Initialisiere alle Funktionen beim Laden der Seite
-document.addEventListener('DOMContentLoaded', () => {
-    createParticles();
-    animateSkillBars();
-});
+// Profil beim Laden der Seite rendern
+document.addEventListener('DOMContentLoaded', renderProfile);
